@@ -72,7 +72,7 @@ const AddProduct = () => {
       console.error("Error adding product:", error.message);
     }
   };
-  // console.log("catttttttttttttttt", categoriesList);
+  console.log("catttttttttttttttt", categoriesList);
   return (
     <div style={{ flex: 1 }}>
       <Topnav />
@@ -109,7 +109,7 @@ const AddProduct = () => {
               >
                 <option value="">Select category</option>
                 {categoriesList?.map((cat) => (
-                  <option key={cat._id} value={cat._id}>
+                  <option key={cat._id} value={cat.categoryName}>
                     {cat?.categoryName}
                   </option>
                 ))}
