@@ -1,0 +1,26 @@
+/* category.css */
+
+.container-fluid {
+    padding: 20px;
+  }
+  
+  .table-container {
+    margin-top: 20px;
+  }
+  
+  .table-container th,
+  .table-container td {
+    text-align: center;
+  }
+  
+  .table-container th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .action-buttons button {
+    margin-right: 5px;
+  }
+  
+
+  
