@@ -72,7 +72,7 @@ const AddProduct = () => {
       console.error("Error adding product:", error.message);
     }
   };
-  console.log("catttttttttttttttt", categoriesList);
+  // console.log("catttttttttttttttt", categoriesList);
   return (
     <div style={{ flex: 1 }}>
       <Topnav />

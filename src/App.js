@@ -8,6 +8,7 @@ import Addcategory from './components/Category/addcategory';
 import AddProduct from './components/product/addproduct';
 import ForgotPass from './components/Forgotpass/forgotpass';
 import LogoutModal from './components/logoutPop/logoutModal';
+import Register from './components/login/createuser';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
       <Route path="/" element={<LoginPage />}></Route>
       <Route path="/logout" element={<LogoutModal />}></Route>
+      <Route path="/register" element={<Register />}></Route>
 
 
       <Route path="/home" element={<Home />}></Route>

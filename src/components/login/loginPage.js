@@ -110,6 +110,8 @@ const LoginPage = () => {
               />
               <br />
               <a href="/forgot-password">Forgot Password?</a>
+              <a href="/register">Register?</a>
+
             </div>
             <button type="button" onClick={handleLogin}>
               Login
