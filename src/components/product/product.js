@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import Topnav from "../topNav/topnav";
 import "../product/product.css";
+import EditProduct from "./editProduct";
 import { BsPencilSquare, BsTrash } from "react-icons/bs";
 
 const Product = () => {
@@ -11,6 +12,8 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [editProductId, setEditProductId] = useState(null);
+
   const serverUrl = "http://localhost:5000";
 
   useEffect(() => {
@@ -46,6 +49,45 @@ const Product = () => {
     setFilteredProducts(filteredProducts);
   };
 
+  const handleEdit = (productId) => {
+    setEditProductId(productId);
+  };
+
+  const handleEditClose = () => {
+    setEditProductId(null);
+  };
+
+  const handleEditSave = async (editedProduct) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/products/${editedProduct._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editedProduct),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update product");
+      }
+      // Update the product in the state
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product._id === editedProduct._id ? editedProduct : product
+        )
+      );
+      setFilteredProducts((prevFilteredProducts) =>
+        prevFilteredProducts.map((product) =>
+          product._id === editedProduct._id ? editedProduct : product
+        )
+      );
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
+  };
+
   const handleDelete = async (productId) => {
     try {
       const confirmDelete = window.confirm(
@@ -72,8 +114,6 @@ const Product = () => {
     }
   };
 
-  
-
   return (
     <div style={{ flex: 1 }}>
       <Topnav />
@@ -84,7 +124,11 @@ const Product = () => {
         <div className="container-fluid mt-4" style={{ flex: 1 }}>
           <div className="d-flex justify-content-between align-items-center">
             <h1>Products</h1>
-            <Button variant="primary" onClick={handleProduct} style={{backgroundColor:"#662671"}}>
+            <Button
+              variant="primary"
+              onClick={handleProduct}
+              style={{ backgroundColor: "#662671" }}
+            >
               Add Product
             </Button>
           </div>
@@ -124,7 +168,12 @@ const Product = () => {
                   </td>
                   <td>{product.status}</td>
                   <td>
-                    <Button variant="info" size="sm" className="mr-2">
+                    <Button
+                      variant="info"
+                      size="sm"
+                      className="mr-2"
+                      onClick={() => handleEdit(product._id)}
+                    >
                       <BsPencilSquare />
                     </Button>{" "}
                     <Button
@@ -141,7 +190,15 @@ const Product = () => {
           </Table>
         </div>
       </div>
+      {editProductId && (
+        <EditProduct
+          productId={editProductId}
+          onClose={handleEditClose}
+          onSave={handleEditSave}
+        />
+      )}
     </div>
+    
   );
 };
 

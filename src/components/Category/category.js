@@ -148,7 +148,7 @@ const Category = () => {
         <div className="container-fluid mt-4" style={{ flex: 1 }}>
           <div className="d-flex justify-content-between align-items-center">
             <h1>All categories</h1>
-            <Button variant="primary" onClick={handleAddNew}>
+            <Button variant="primary" onClick={handleAddNew} style={{backgroundColor:"#662671"}}>
                   Add New
                 </Button>
                 </div>

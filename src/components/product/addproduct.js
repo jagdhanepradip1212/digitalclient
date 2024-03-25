@@ -59,6 +59,8 @@ const AddProduct = () => {
         throw new Error("Failed to add product");
       } else {
         alert("product added successfully");
+        navigate("/product");
+
       }
       // Reset form fields after successful submission
       setProductName("");

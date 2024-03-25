@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom"; // Import Redirect for navigation
 import "../login/login.css";
 import Home from "../Home/Home";
 import { useNavigate } from "react-router-dom";
